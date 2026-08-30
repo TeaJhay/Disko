@@ -96,9 +96,9 @@ echo "  Passed: $PASS"
 echo "  Failed: $FAIL"
 echo
 if [[ "$FAIL" -eq 0 ]]; then
-    echo "All checks passed. Safe to 'sudo reboot' when ready."
+    echo "All checks passed. Safe to runn nixos-install when ready."
     exit 0
 else
-    echo "Some checks FAILED. Do not reboot until resolved."
+    echo "Some checks FAILED. Do not proceed until resolved."
     exit 1
 fi
