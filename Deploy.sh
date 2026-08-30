@@ -11,7 +11,8 @@ run github:nix-community/disko/latest -- --mode destroy,format,mount \
 --yes-wipe-all-disks ./disko.nix
 
 echo "== Creating pristine @void-blank snapshot =="
-sudo mount -o subvol=/ /dev/disk/by-partlabel/disk-main-root /mnt
+sudo umount -R /mnt 2>/dev/null || true
+sudo mount -o rw,subvol=/ /dev/disk/by-partlabel/disk-main-root /mnt
 sudo btrfs subvolume snapshot -r /mnt/@void /mnt/@void-blank
 sudo umount /mnt
 
