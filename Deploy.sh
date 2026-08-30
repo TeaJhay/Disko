@@ -10,6 +10,12 @@ sudo nix --experimental-features "nix-command flakes" \
 run github:nix-community/disko/latest -- --mode destroy,format,mount \
 --yes-wipe-all-disks ./disko.nix
 
+
+echo "== Phase 2:: Minimal NixOS-Install  =="
+sudo nixos-generate-config --no-filesystems --root /mnt
+cd /mnt
+sudo nixos-install
+
 echo "== Creating pristine @void-blank snapshot =="
 sudo umount -R /mnt 2>/dev/null || true
 sudo mount -o rw,subvol=/ /dev/disk/by-partlabel/disk-main-root /mnt
