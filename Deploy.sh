@@ -17,7 +17,7 @@ cd /mnt
 sudo nixos-install
 
 echo "== Creating pristine @void-blank snapshot =="
-sudo umount -R /mnt 2>/dev/null || true
+sudo umount -R /mnt
 sudo mount -o rw,subvol=/ /dev/disk/by-partlabel/disk-main-root /mnt
 sudo btrfs subvolume snapshot -r /mnt/@void /mnt/@void-blank
 sudo umount /mnt
