@@ -12,7 +12,7 @@ run github:nix-community/disko/latest -- --mode destroy,format,mount \
 
 
 echo "== Phase 2:: Minimal NixOS-Install  =="
-sudo nixos-generate-config --no-filesystems --root /mnt
+sudo nixos-generate-config --root /mnt
 cd /mnt
 sudo nixos-install
 
@@ -102,7 +102,7 @@ echo "  Passed: $PASS"
 echo "  Failed: $FAIL"
 echo
 if [[ "$FAIL" -eq 0 ]]; then
-    echo "All checks passed. Safe to runn nixos-install when ready."
+    echo "All checks passed. Safe to reboot when ready."
     exit 0
 else
     echo "Some checks FAILED. Do not proceed until resolved."
