@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 echo "About to WIPE according to disko.nix"
-lsblk -o NAME,SIZE,MODEL "$(readlink -f "$DISK")"
+lsblk -o NAME,SIZE,MODEL 
 read -rp "Type YES to continue: " confirm
 [[ "${confirm,,}" == "yes" ]] || { echo "Aborted."; exit 1; }
 
