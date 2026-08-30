@@ -79,8 +79,8 @@ else
 fi
  
 hdr "Snapshot lineage (Parent UUID check)"
-SRC_UUID="$(sudo btrfs subvolume show "$MNT/$SUBVOL_SRC" | awk -F': *' '/^\tUUID:/{print $2}')"
-SNAP_PARENT_UUID="$(sudo btrfs subvolume show "$MNT/$SUBVOL_SNAP" | awk -F': *' '/Parent UUID:/{print $2}')"
+SRC_UUID="$(sudo btrfs subvolume show "$MNT/$SUBVOL_SRC" | awk -F':' '/^\tUUID:/{print $2}' | tr -d '[:space:]')"
+SNAP_PARENT_UUID="$(sudo btrfs subvolume show "$MNT/$SUBVOL_SNAP" | awk -F':' '/Parent UUID:/{print $2}' | tr -d '[:space:]')"
 if [[ -n "$SRC_UUID" && "$SRC_UUID" == "$SNAP_PARENT_UUID" ]]; then
     ok "$SUBVOL_SNAP's Parent UUID matches $SUBVOL_SRC's UUID ($SRC_UUID)"
 else
