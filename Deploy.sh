@@ -6,8 +6,8 @@ read -rp "Type YES to continue: " confirm
 [[ "${confirm,,}" == "yes" ]] || { echo "Aborted."; exit 1; }
 
 echo "== Phase 1:: Disko partition and Format  =="
-sudo nix --experimental-features "nix-command flakes" /
-run github:nix-community/disko/latest -- --mode destroy,format /
+sudo nix --experimental-features "nix-command flakes" \
+run github:nix-community/disko/latest -- --mode destroy,format \
 --yes-wipe-all-disks ./disko.nix
 
 echo "== Creating pristine @void-blank snapshot =="
